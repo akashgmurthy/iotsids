@@ -1,0 +1,91 @@
+---
+title: "Data Visualization"
+output: 
+  html_document: 
+    fig_height: 4
+    highlight: pygments
+    theme: spacelab
+---
+
+## Setup
+
+### Load packages
+
+```{r load-packages, message = FALSE}
+library(ggplot2)
+library(dplyr)
+library(statsr)
+library(tidyverse)
+library(readxl)
+library(here)
+```
+
+### Load data
+
+```{r}
+SIDS <- read_excel(here("dataset.xlsx"))
+```
+
+
+* * *
+
+## Part 1: Data
+Since the data is obtained randomly, we can generalize the results. The data only provides correlation and not causality since this is an observational study. 
+
+Position( 1-correct position, 0- wrong position)
+
+Risk (1-High Risk, 0-Low Risk)
+
+Heartbeat(100-160 Beats per Min)
+
+Respiratory Rate(25-55 breaths per min)
+
+Temperature(35-37.4 Degree Celcius)
+
+References: https://www.mottchildren.org/health-library/abo2987
+
+
+* * *
+
+
+## Part 2: Exploratory data analysis
+
+ 
+```{r}
+ggplot(data = SIDS, aes(x = Number, y = HeartRate)) +
+  geom_point()
+```
+
+Scatterplot of Various Heartbeats 
+ 
+```{r}
+ggplot(data = SIDS, aes(x = Number, y = BodyTemperature )) +
+  geom_point()
+```
+
+Scatterplot of Various Body Temperatures
+```{r}
+ggplot(data = SIDS, aes(x = Number, y = RespirationRate  )) +
+  geom_point()
+```
+
+ Scatterplot of Various Respiration Rates 
+```{r}
+ggplot(data=SIDS)+ geom_bar(mapping=aes(x=Position))
+
+```
+
+Bar Graph denoting Position Count
+```{r}
+ggplot(data=SIDS)+ geom_bar(mapping=aes(x=Risk))
+
+```
+
+Bar Graph denoting Risk Count
+```{r}
+summary(SIDS)
+plot(SIDS)
+
+```
+* * *
+
